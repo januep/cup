@@ -1,5 +1,6 @@
 import React from 'react';
-import { Layout, Menu, Row, Col, Card } from 'antd';
+import { Layout, Menu, Row, Col, Card, Avatar } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 import './App.css';
 
 const { Header, Content, Footer } = Layout;
@@ -53,20 +54,45 @@ function App() {
   const matchCards = matches.map(match => (
     <Col key={match.id} xs={24} sm={12} md={8} lg={6}>
       <Card title={match.round}>
-        <p>{match.player1} vs {match.player2}</p>
+        <Row>
+          <Col span={10}>
+            <Avatar icon={<UserOutlined />} />
+            <p>{match.player1}</p>
+          </Col>
+          <Col span={4}>
+            <p style={{ textAlign: 'center' }}>vs</p>
+            <p style={{ textAlign: 'center' }}>2 - 0</p>
+          </Col>
+          <Col span={10}>
+            <Avatar icon={<UserOutlined />} />
+            <p>{match.player2}</p>
+          </Col>
+        </Row>
       </Card>
     </Col>
   ));
 
   return (
     <Layout className="layout">
-      <Header>
-        <div className="logo" />
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
-          <Menu.Item key="1">Mecze</Menu.Item>
-          <Menu.Item key="2">Zawodniczki</Menu.Item>
-          <Menu.Item key="3">Klasyfikacja</Menu.Item>
-        </Menu>
+      <Header style={{ position: 'sticky', top: 0, zIndex: 1, width: '100%' }}>
+        <div
+          style={{
+            float: 'left',
+            width: 120,
+            height: 31,
+            margin: '16px 24px 16px 0',
+            background: 'rgba(255, 255, 255, 0.2)',
+          }}
+        />
+        <Menu
+          theme="dark"
+          mode="horizontal"
+          defaultSelectedKeys={['2']}
+          items={new Array(3).fill(null).map((_, index) => ({
+            key: String(index + 1),
+            label: `nav ${index + 1}`,
+          }))}
+        />
       </Header>
       <Content style={{ padding: '0 50px' }}>
         <div className="site-layout-content">
