@@ -28,7 +28,25 @@ const matches = [
     round: 'Ćwierćfinał',
     player1: 'Caroline Garcia',
     player2: 'Coco Gauff'
-  }
+  },
+  {
+    id: 5,
+    round: 'Półfinał',
+    player1: 'Iga Swiatek',
+    player2: 'Aryna Sabalenka'
+  },
+  {
+    id: 6,
+    round: 'Półfinał',
+    player1: 'Jessica Pegula',
+    player2: 'Caroline Garcia'
+  },
+  {
+    id: 7,
+    round: 'Finał',
+    player1: 'Iga Swiatek',
+    player2: 'Jessica Pegula'
+  },
   ];
 
 function App() {
@@ -52,7 +70,7 @@ function App() {
       </Header>
       <Content style={{ padding: '0 50px' }}>
         <div className="site-layout-content">
-          <h1>Turniej Tenisa Kobiet</h1>
+          <h1>Rzym WTA, ziemna</h1>
           <Row gutter={[16, 16]}>
             {matchCards}
           </Row>
