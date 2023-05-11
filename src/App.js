@@ -8,17 +8,28 @@ const matches = [
   {
     id: 1,
     round: 'Ćwierćfinał',
-    player1: 'Zawodniczka A',
-    player2: 'Zawodniczka B'
+    player1: 'Iga Swiatek',
+    player2: 'Maria Sakkari'
   },
   {
     id: 2,
     round: 'Ćwierćfinał',
-    player1: 'Zawodniczka C',
-    player2: 'Zawodniczka D'
+    player1: 'Aryna Sabalenka',
+    player2: 'Ons Jabeur'
   },
-  // ...dodaj kolejne mecze
-];
+  {
+    id: 3,
+    round: 'Ćwierćfinał',
+    player1: 'Jessica Pegula',
+    player2: 'Elena Rybakina'
+  },
+  {
+    id: 4,
+    round: 'Ćwierćfinał',
+    player1: 'Caroline Garcia',
+    player2: 'Coco Gauff'
+  }
+  ];
 
 function App() {
   const matchCards = matches.map(match => (
@@ -48,7 +59,7 @@ function App() {
         </div>
       </Content>
       <Footer style={{ textAlign: 'center' }}>
-        Turniej Tenisa Kobiet ©2023 Stworzone przez Jan Manczak
+        Tennis4U @2023
       </Footer>
     </Layout>
   );
