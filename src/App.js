@@ -74,17 +74,21 @@ function App() {
 
   return (
     <Layout className="layout">
-      <Header style={{ position: 'sticky', top: 0, zIndex: 1, width: '100%' }}>
-        <div
-          style={{
-            float: 'left',
-            width: 120,
-            height: 31,
-            margin: '16px 24px 16px 0',
-            background: 'rgba(255, 255, 255, 0.2)',
-          }}
-        />
+      <Header style={{ position: 'sticky', top: 0, zIndex: 1, width: '100%', background: '#3A5400'}}>
+      <div
+  style={{
+    float: 'left',
+    width: 120,
+    height: 31,
+    margin: '16px 24px 16px 0',
+    background: `url(${process.env.PUBLIC_URL + "/Tennis4U.png"})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center'
+  }}
+/>
+
         <Menu
+        style={{ background: '#3A5400' }}
           theme="dark"
           mode="horizontal"
           defaultSelectedKeys={['2']}

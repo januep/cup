@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+/* ... (inne style) ... */
+
+/* Zwiększona specyficzność selektora */
+.ant-menu.ant-menu-dark .ant-menu-item-selected {
+  background-color: #91d400; /* Tu wpisz żądany kolor */
+}
