@@ -1,9 +1,12 @@
 import React from 'react';
-import { Layout, Menu, Row, Col, Card, Avatar } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
+import { Layout, Row } from 'antd';
 import './App.css';
+import TennisHeader from './TennisHeader';
+import MatchCard from './MatchCard';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Players from './Players';
 
-const { Header, Content, Footer } = Layout;
+const { Content, Footer } = Layout;
 
 const matches = [
   {
@@ -51,65 +54,33 @@ const matches = [
   ];
 
 function App() {
-  const matchCards = matches.map(match => (
-    <Col key={match.id} xs={24} sm={12} md={8} lg={6}>
-      <Card title={match.round}>
-        <Row>
-          <Col span={10}>
-            <Avatar icon={<UserOutlined />} />
-            <p>{match.player1}</p>
-          </Col>
-          <Col span={4}>
-            <p style={{ textAlign: 'center' }}>vs</p>
-            <p style={{ textAlign: 'center' }}>2 - 0</p>
-          </Col>
-          <Col span={10}>
-            <Avatar icon={<UserOutlined />} />
-            <p>{match.player2}</p>
-          </Col>
-        </Row>
-      </Card>
-    </Col>
-  ));
+
 
   return (
+    <Router>
     <Layout className="layout">
-      <Header style={{ position: 'sticky', top: 0, zIndex: 1, width: '100%', background: '#3A5400'}}>
-      <div
-  style={{
-    float: 'left',
-    width: 120,
-    height: 31,
-    margin: '16px 24px 16px 0',
-    background: `url(${process.env.PUBLIC_URL + "/Tennis4U.png"})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center'
-  }}
-/>
-
-        <Menu
-        style={{ background: '#3A5400' }}
-          theme="dark"
-          mode="horizontal"
-          defaultSelectedKeys={['1']}
-          items={new Array(2).fill(null).map((_, index) => ({
-            key: String(index + 1),
-            label: `nav ${index + 1}`,
-          }))}
-        />
-      </Header>
+      <TennisHeader/>
       <Content style={{ padding: '0 50px' }}>
         <div className="site-layout-content">
-          <h1>Rzym WTA, ziemna</h1>
-          <Row gutter={[16, 16]}>
-            {matchCards}
-          </Row>
+        <Routes>
+              <Route path="/players" element={<Players />} />
+              <Route path="/matches" element={
+                <div>
+                  <h1>Rzym WTA, ziemna</h1>
+                  <Row gutter={[16, 16]}>
+                    {matches.map(match => <MatchCard key={match.id} match={match} />)}
+                  </Row>
+                </div>
+              } />
+            </Routes>
+          
         </div>
       </Content>
       <Footer style={{ textAlign: 'center' }}>
         Tennis4U @2023
       </Footer>
     </Layout>
+    </Router>
   );
 }
 
