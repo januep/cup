@@ -91,8 +91,8 @@ function App() {
         style={{ background: '#3A5400' }}
           theme="dark"
           mode="horizontal"
-          defaultSelectedKeys={['2']}
-          items={new Array(3).fill(null).map((_, index) => ({
+          defaultSelectedKeys={['1']}
+          items={new Array(2).fill(null).map((_, index) => ({
             key: String(index + 1),
             label: `nav ${index + 1}`,
           }))}
