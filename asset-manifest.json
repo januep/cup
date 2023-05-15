@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/cup/static/css/main.4beae480.css",
+    "main.css": "/cup/static/css/main.272ebbc6.css",
     "main.js": "/cup/static/js/main.8e651c3a.js",
     "static/js/787.5af70cc5.chunk.js": "/cup/static/js/787.5af70cc5.chunk.js",
     "static/media/do.svg": "/cup/static/media/do.64a9810e7d07e3af7412.svg",
@@ -149,6 +149,7 @@
     "static/media/cn.svg": "/cup/static/media/cn.f5a6f048eb8367343bd4.svg",
     "static/media/tk.svg": "/cup/static/media/tk.e3d850fb9644bf50d891.svg",
     "static/media/fm.svg": "/cup/static/media/fm.1579e5b6f7e79e751445.svg",
+    "index.html": "/cup/index.html",
     "static/media/mh.svg": "/cup/static/media/mh.c0b2e372c1a8cb36930e.svg",
     "static/media/ag.svg": "/cup/static/media/ag.5929ca9ff0f160f96fb5.svg",
     "static/media/tn.svg": "/cup/static/media/tn.8b09464a7524dff3fa47.svg",
@@ -163,7 +164,6 @@
     "static/media/cf.svg": "/cup/static/media/cf.eb50c5ecfa556ddba5a7.svg",
     "static/media/cw.svg": "/cup/static/media/cw.8e4cecbf86c9e4b2df3a.svg",
     "static/media/nr.svg": "/cup/static/media/nr.dcf2ea3a8e5dbf8a9b80.svg",
-    "index.html": "/cup/index.html",
     "static/media/pr.svg": "/cup/static/media/pr.836bcb814711de3da206.svg",
     "static/media/gg.svg": "/cup/static/media/gg.6b23b5b1092e831766f9.svg",
     "static/media/cu.svg": "/cup/static/media/cu.1452c504ef675071dcdf.svg",
@@ -271,12 +271,12 @@
     "static/media/pl.svg": "/cup/static/media/pl.9400273de5d060652ce7.svg",
     "static/media/de.svg": "/cup/static/media/de.7e82f4c71df5fc78abbb.svg",
     "static/media/bd.svg": "/cup/static/media/bd.d16830cba55e113c5888.svg",
-    "main.4beae480.css.map": "/cup/static/css/main.4beae480.css.map",
+    "main.272ebbc6.css.map": "/cup/static/css/main.272ebbc6.css.map",
     "main.8e651c3a.js.map": "/cup/static/js/main.8e651c3a.js.map",
     "787.5af70cc5.chunk.js.map": "/cup/static/js/787.5af70cc5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4beae480.css",
+    "static/css/main.272ebbc6.css",
     "static/js/main.8e651c3a.js"
   ]
 }
