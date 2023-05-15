@@ -23,10 +23,10 @@ const TennisHeader = () => {
                 defaultSelectedKeys={['1']}
             >
                 <Menu.Item key='1'>
-                    <Link to="/matches">Mecze</Link>
+                    <Link to="/matches">Wyniki</Link>
                 </Menu.Item>
                 <Menu.Item key='2'>
-                    <Link to="/players">Zawodniczki</Link>
+                    <Link to="/players">Ranking</Link>
                 </Menu.Item>
             </Menu>
         </Layout.Header>
