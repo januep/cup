@@ -20,7 +20,7 @@ const TennisHeader = () => {
                 style={{ background: '#3A5400' }}
                 theme="dark"
                 mode="horizontal"
-                defaultSelectedKeys={['1']}
+                // defaultSelectedKeys={['1']}
             >
                 <Menu.Item key='1'>
                     <Link to="/matches">Wyniki</Link>

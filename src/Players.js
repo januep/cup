@@ -99,7 +99,7 @@ const players = [
 
 const columns = [
   {
-    title: 'Ranking',
+    title: 'Rank',
     dataIndex: 'ranking',
     sorter: (a, b) => a.ranking - b.ranking,
   },
@@ -113,7 +113,7 @@ const columns = [
     title: 'Last Name',
     dataIndex: 'lastName',
     sorter: (a, b) => a.lastName.localeCompare(b.lastName),
-    responsive: ['md'],
+    
   },
   {
     title: 'Points',
@@ -133,6 +133,7 @@ const columns = [
     render: dob => calculateAge(dob),
     sorter: (a, b) => calculateAge(a.dateOfBirth) - calculateAge(b.dateOfBirth),
     sortDirections: ['descend'],
+    responsive: ['md'],
   },
   {
     title: 'Height',
