@@ -7,7 +7,7 @@ import { ReactComponent as Logo } from './logo.svg';
 
 const TennisHeader = () => {
     return (
-        <Layout.Header style={{ position: 'sticky', top: 0, zIndex: 1, width: '100%', background: '#3A5400'}}>
+        <Layout.Header style={{ position: 'sticky', top: 0, zIndex: 2, width: '100%', background: '#3A5400'}}>
             <Link to="/"> 
                 <Logo style={{
                     float: 'left',
