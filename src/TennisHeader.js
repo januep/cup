@@ -1,23 +1,21 @@
 // TennisHeader.js
 import { Link } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
+import { ReactComponent as Logo } from './logo.svg'; 
 
 // ...
 
 const TennisHeader = () => {
     return (
         <Layout.Header style={{ position: 'sticky', top: 0, zIndex: 1, width: '100%', background: '#3A5400'}}>
-            <div
-                style={{
+            <Link to="/"> 
+                <Logo style={{
                     float: 'left',
                     width: 120,
                     height: 31,
                     margin: '16px 24px 16px 0',
-                    background: `url(${process.env.PUBLIC_URL + "/Tennis4U.png"})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center'
-                }}
-            />
+                }} />
+            </Link>
             <Menu
                 style={{ background: '#3A5400' }}
                 theme="dark"
