@@ -1,6 +1,7 @@
 import React from 'react';
-import { Row, Col, Card, Avatar } from 'antd';
+import { Row, Col, Card } from 'antd';
 import FlagIconFactory from 'react-flag-icon-css';
+import { Link } from 'react-router-dom';
 
 const FlagIcon = FlagIconFactory(React, { useCssModules: false });
 
@@ -11,7 +12,7 @@ const MatchCard = ({ match }) => {
         <Row>
           <Col span={9} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
             <FlagIcon code={match.homePlayer.nationality.toLowerCase()} size='lg' />
-            <p>{match.homePlayer.lastName}</p>
+            <Link style={{ color: 'black' }}  to={`/player/${match.homePlayer.id}`}><p>{match.homePlayer.lastName}</p></Link>
           </Col>
           
           <Col span={2} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px' }}>
@@ -27,13 +28,12 @@ const MatchCard = ({ match }) => {
           
           <Col span={9} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
             <FlagIcon code={match.awayPlayer.nationality.toLowerCase()} size='lg' />
-            <p>{match.awayPlayer.lastName}</p>
+            <Link style={{ color: 'black' }} to={`/player/${match.awayPlayer.id}`}><p>{match.awayPlayer.lastName}</p></Link>
           </Col>
         </Row>
       </Card>
     </Col>
   );
 };
-
 
 export default MatchCard;
