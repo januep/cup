@@ -5,6 +5,7 @@ import TennisHeader from './TennisHeader';
 import MatchCard from './MatchCard';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Players from './Players';
+import Counter from './features/counter/Counter';
 
 const { Content, Footer } = Layout;
 
@@ -72,6 +73,7 @@ function App() {
                   </Row>
                 </div>
               } />
+              <Route path="/" element={<Counter/>} />
             </Routes>
           
         </div>
