@@ -22,8 +22,8 @@ const columns = [
   {
     title: 'Last Name',
     dataIndex: 'lastName',
-    sorter: (a, b) => a.lastName.localeCompare(b.lastName),
     
+    sorter: (a, b) => a.lastName.localeCompare(b.lastName),
   },
   {
     title: 'Points',

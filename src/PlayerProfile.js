@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Descriptions, Tag } from 'antd';
+import { Descriptions, Avatar } from 'antd';
 import data from './players.json';
 import {CustomFlagIconFactory as FlagIconFactory} from 'react-flag-icon-css';
 
@@ -17,11 +17,13 @@ function PlayerProfile() {
   }
 
   return (
+    <div>
+    <Avatar size={128} src={require(`./${player.image}`)} />
       <Descriptions
       title={player.firstName + " " + player.lastName}
       bordered
       column={{ xxl: 4, xl: 3, lg: 3, md: 3, sm: 2, xs: 1 }}
-    >
+      >
         <Descriptions.Item label="Ranking">{player.ranking}</Descriptions.Item>
         <Descriptions.Item label="Nationality">{player.nationality}</Descriptions.Item>
         <Descriptions.Item label="Date of Birth">{player.dateOfBirth}</Descriptions.Item>
@@ -29,6 +31,7 @@ function PlayerProfile() {
         <Descriptions.Item label="Weight">{player.weight}</Descriptions.Item>
         <Descriptions.Item label="Points">{player.points}</Descriptions.Item>
       </Descriptions>
+      </div>
   );
 }
 
