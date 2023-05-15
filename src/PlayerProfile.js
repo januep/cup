@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Descriptions, Avatar } from 'antd';
 import data from './players.json';
 import {CustomFlagIconFactory as FlagIconFactory} from 'react-flag-icon-css';
+import { calculateAge } from './utils';
 
 
 const FlagIcon = FlagIconFactory(React, { useCssModules: false });
@@ -18,17 +19,20 @@ function PlayerProfile() {
 
   return (
     <div>
-    <Avatar size={128} src={require(`./${player.image}`)} />
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      
+    <Avatar size={512} src={require(`./${player.image}`)} />
+  </div>
       <Descriptions
       title={player.firstName + " " + player.lastName}
       bordered
       column={{ xxl: 4, xl: 3, lg: 3, md: 3, sm: 2, xs: 1 }}
       >
         <Descriptions.Item label="Ranking">{player.ranking}</Descriptions.Item>
-        <Descriptions.Item label="Nationality">{player.nationality}</Descriptions.Item>
-        <Descriptions.Item label="Date of Birth">{player.dateOfBirth}</Descriptions.Item>
-        <Descriptions.Item label="Height">{player.height}</Descriptions.Item>
-        <Descriptions.Item label="Weight">{player.weight}</Descriptions.Item>
+        <Descriptions.Item label="Nationality"><FlagIcon code={player.nationality.toLowerCase()} /></Descriptions.Item>
+        <Descriptions.Item label="Date of Birth">{player.dateOfBirth} ({calculateAge(player.dateOfBirth)} yo)</Descriptions.Item>
+        <Descriptions.Item label="Height">{player.height} cm</Descriptions.Item>
+        <Descriptions.Item label="Weight">{player.weight} kg</Descriptions.Item>
         <Descriptions.Item label="Points">{player.points}</Descriptions.Item>
       </Descriptions>
       </div>
