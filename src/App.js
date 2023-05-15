@@ -3,7 +3,7 @@ import { Layout, Row } from 'antd';
 import './App.css';
 import TennisHeader from './TennisHeader';
 import MatchCard from './MatchCard';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom'; //BrowserRouter lepszy
 import Players from './Players';
 import PlayerProfile from "./PlayerProfile";
 import Counter from './features/counter/Counter';
