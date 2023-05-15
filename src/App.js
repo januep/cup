@@ -5,6 +5,7 @@ import TennisHeader from './TennisHeader';
 import MatchCard from './MatchCard';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Players from './Players';
+import PlayerProfile from "./PlayerProfile";
 import Counter from './features/counter/Counter';
 
 const { Content, Footer } = Layout;
@@ -74,6 +75,7 @@ function App() {
                 </div>
               } />
               <Route path="/" element={<Counter/>} />
+              <Route path="/player/:id" element={<PlayerProfile />} />
             </Routes>
           
         </div>

@@ -3,6 +3,7 @@ import { Table } from 'antd';
 import {CustomFlagIconFactory as FlagIconFactory} from 'react-flag-icon-css';
 import { calculateAge } from './utils';
 import players from './players.json';
+import { useNavigate } from "react-router-dom";
 
 const FlagIcon = FlagIconFactory(React, { useCssModules: false });
 
@@ -16,7 +17,7 @@ const columns = [
     title: 'First Name',
     dataIndex: 'firstName',
     sorter: (a, b) => a.firstName.localeCompare(b.firstName),
-    responsive: ['xl'],
+    responsive: ['lg'],
   },
   {
     title: 'Last Name',
@@ -34,7 +35,7 @@ const columns = [
     title: 'Nationality',
     dataIndex: 'nationality',
     render: nationality => <FlagIcon code={nationality.toLowerCase()} />,
-    responsive: ['md'],
+    responsive: ['sm'],
   },
   {
     title: 'Age',
@@ -61,11 +62,23 @@ const columns = [
 ];
 
 function Players() {
+
+  const navigate = useNavigate();
+
+  const onRowClick = (record, rowIndex) => {
+    return {
+      onClick: event => {
+        navigate(`/player/${record.id}`);
+      },
+    };
+  };
+
   return (
       <Table 
         dataSource={players} 
         columns={columns} 
         rowKey='id'
+        onRow={onRowClick}
         
       />
     );
