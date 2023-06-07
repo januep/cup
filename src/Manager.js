@@ -1,24 +1,64 @@
-// Autor
 import React, { useState } from "react";
-import { Button } from "antd";
-import PlayerForm from "./PlayerForm";
+import { Button, Row, Col } from "antd";
+import { PlusOutlined, MinusOutlined } from "@ant-design/icons";
+import PlayerForm from "./PlayerForm"; // Pamiętaj, aby dostosować ścieżkę do pliku PlayerForm.js
 
 const Manager = () => {
-  const [isFormVisible, setFormVisible] = useState(false);
+  const [isPlayerFormVisible, setPlayerFormVisible] = useState(false);
+  const [isTournamentFormVisible, setTournamentFormVisible] = useState(false);
 
   const onFinish = (values) => {
     console.log("Received values from form: ", values);
-    setFormVisible(false); // ukrywa formularz po zakończeniu
+    setPlayerFormVisible(false); // ukrywa formularz po zakończeniu
+    setTournamentFormVisible(false); // ukrywa formularz po zakończeniu
+  };
+
+  const togglePlayerFormVisible = () => {
+    setPlayerFormVisible(!isPlayerFormVisible);
+  };
+
+  const toggleTournamentFormVisible = () => {
+    setTournamentFormVisible(!isTournamentFormVisible);
   };
 
   return (
     <div style={{ maxWidth: 600, margin: "auto" }}>
-      <br />
-      <Button type="primary" onClick={() => setFormVisible(true)}>
-        Dodaj gracza
-      </Button>
+      <h1>
+        <br />
+        Zarządzaj graczami i turniejami
+      </h1>
 
-      {isFormVisible && <PlayerForm onFinish={onFinish} />}
+      <Row gutter={16}>
+        <Col>
+          <Button
+            type="primary"
+            ghost
+            icon={isPlayerFormVisible ? <MinusOutlined /> : <PlusOutlined />}
+            onClick={togglePlayerFormVisible}
+          >
+            {isPlayerFormVisible ? "Ukryj formularz gracza" : "Dodaj gracza"}
+          </Button>
+        </Col>
+
+        <Col>
+          <Button
+            type="primary"
+            ghost
+            icon={
+              isTournamentFormVisible ? <MinusOutlined /> : <PlusOutlined />
+            }
+            onClick={toggleTournamentFormVisible}
+          >
+            {isTournamentFormVisible
+              ? "Ukryj formularz turnieju"
+              : "Dodaj turniej"}
+          </Button>
+        </Col>
+      </Row>
+
+      {isPlayerFormVisible && <PlayerForm onFinish={onFinish} />}
+
+      {isTournamentFormVisible && <PlayerForm onFinish={onFinish} />}
     </div>
   );
 };

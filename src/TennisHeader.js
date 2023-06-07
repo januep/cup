@@ -1,11 +1,9 @@
-// TennisHeader.js
 import { Link } from "react-router-dom";
-import { Layout, Menu } from "antd";
+import { Layout, Menu, Button } from "antd";
+import { LogoutOutlined } from "@ant-design/icons";
 import { ReactComponent as Logo } from "./logo.svg";
 
-//
-
-const TennisHeader = () => {
+const TennisHeader = ({ isLoggedIn, onLogout }) => {
   return (
     <Layout.Header
       style={{
@@ -26,22 +24,31 @@ const TennisHeader = () => {
           }}
         />
       </Link>
-      <Menu
-        style={{ background: "#3A5400" }}
-        theme="dark"
-        mode="horizontal"
-        // defaultSelectedKeys={['1']}
-      >
+      <Menu style={{ background: "#3A5400" }} theme="dark" mode="horizontal">
         <Menu.Item key="1">
           <Link to="/matches">Wyniki</Link>
         </Menu.Item>
         <Menu.Item key="2">
           <Link to="/players">Ranking</Link>
         </Menu.Item>
-        {/* Potrzebne na WAP: */}
         <Menu.Item key="3">
           <Link to="/manager">Menedżer</Link>
         </Menu.Item>
+
+        {isLoggedIn && (
+          <Button
+            icon={<LogoutOutlined />}
+            ghost
+            onClick={onLogout}
+            style={{
+              position: "absolute",
+              right: 10,
+              top: 15,
+              borderColor: "#91d400",
+              color: "#91d400",
+            }}
+          />
+        )}
       </Menu>
     </Layout.Header>
   );
