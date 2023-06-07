@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Layout, Menu } from "antd";
 import { ReactComponent as Logo } from "./logo.svg";
 
-// ...
+//
 
 const TennisHeader = () => {
   return (
@@ -38,6 +38,7 @@ const TennisHeader = () => {
         <Menu.Item key="2">
           <Link to="/players">Ranking</Link>
         </Menu.Item>
+        {/* Potrzebne na WAP: */}
         <Menu.Item key="3">
           <Link to="/manager">Menedżer</Link>
         </Menu.Item>
