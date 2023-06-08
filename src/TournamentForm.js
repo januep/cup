@@ -25,7 +25,7 @@ const TournamentForm = ({ onFinish }) => {
 
   return (
     <Form name="manager" onFinish={handleFinish} autoComplete="off">
-      <Divider>
+      <Divider orientation="left">
         {" "}
         <TrophyOutlined /> Nazwa turnieju
       </Divider>
@@ -40,7 +40,7 @@ const TournamentForm = ({ onFinish }) => {
       >
         <Input placeholder="Tournament name" />
       </Form.Item>
-      <Divider>Pierwszy półfinał</Divider>
+      <Divider orientation="left">Pierwszy półfinał</Divider>
       <Form.Item
         name="semiFinal1Player1"
         rules={[
@@ -83,7 +83,7 @@ const TournamentForm = ({ onFinish }) => {
           ))}
         </Select>
       </Form.Item>
-      <Divider>Drugi półfinał</Divider>
+      <Divider orientation="left">Drugi półfinał</Divider>
       <Form.Item
         name="semiFinal2Player1"
         rules={[
