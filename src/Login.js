@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Input, Button, Form, message } from "antd";
+import { Input, Button, Form, message, Divider } from "antd";
 import { LoginOutlined } from "@ant-design/icons";
 
 const Login = ({ onLogin }) => {
@@ -19,7 +19,7 @@ const Login = ({ onLogin }) => {
 
   return (
     <div style={{ maxWidth: 400, margin: "auto" }}>
-      <h1>Zaloguj się</h1>
+      <Divider orientation="left">Zaloguj się</Divider>
       <Form onFinish={handleLogin}>
         <Form.Item
           label="Nazwa"

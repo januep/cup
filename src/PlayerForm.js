@@ -23,7 +23,7 @@ const PlayerForm = ({ onFinish }) => {
 
   return (
     <Form name="manager" onFinish={handleFinish} autoComplete="off">
-      <Divider>Wprowadź dane zawodnika</Divider>
+      <Divider orientation="left">Wprowadź dane zawodnika</Divider>
       {/* <Form.Item
         name="id"
         label="ID"

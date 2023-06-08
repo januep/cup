@@ -22,7 +22,7 @@ const Manager = () => {
 
   return (
     <div style={{ maxWidth: 600, margin: "auto" }}>
-      <Divider>Zarządzaj graczami i turniejami</Divider>
+      <Divider orientation="left">Zarządzaj graczami i turniejami</Divider>
       <Row gutter={16}>
         <Col>
           <Button
