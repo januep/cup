@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Input, Button, Form } from "antd";
+import { Input, Button, Form, message } from "antd";
 import { LoginOutlined } from "@ant-design/icons";
 
 const Login = ({ onLogin }) => {
@@ -9,6 +9,7 @@ const Login = ({ onLogin }) => {
   const handleLogin = () => {
     // For now, just pass the username and password to the onLogin function
     onLogin(username, password);
+    message.success("Pomyślnie zalogowano"); // display success message
   };
 
   return (

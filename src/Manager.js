@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Row, Col } from "antd";
-import { PlusOutlined, MinusOutlined } from "@ant-design/icons";
+import { PlusOutlined, MinusOutlined, TrophyOutlined } from "@ant-design/icons";
 import PlayerForm from "./PlayerForm"; // Pamiętaj, aby dostosować ścieżkę do pliku PlayerForm.js
 import TournamentForm from "./TournamentForm"; // Pamiętaj, aby dostosować ścieżkę do pliku TournamentForm.js
 
@@ -35,7 +35,7 @@ const Manager = () => {
             icon={formType === "player" ? <MinusOutlined /> : <PlusOutlined />}
             onClick={() => toggleForm("player")}
           >
-            {formType === "player" ? "Ukryj formularz gracza" : "Dodaj gracza"}
+            {formType === "player" ? "Ukryj" : "Dodaj gracza"}
           </Button>
         </Col>
 
@@ -48,9 +48,7 @@ const Manager = () => {
             }
             onClick={() => toggleForm("tournament")}
           >
-            {formType === "tournament"
-              ? "Ukryj formularz turnieju"
-              : "Dodaj turniej"}
+            {formType === "tournament" ? "Ukryj" : "Dodaj turniej"}
           </Button>
         </Col>
       </Row>

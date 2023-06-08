@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Form, Select, Button, Modal, Input } from "antd";
+import { Form, Select, Button, Modal, Input, message } from "antd";
 import players from "./players.json";
+import { TrophyOutlined } from "@ant-design/icons";
 
 const { Option } = Select;
 
@@ -17,14 +18,18 @@ const TournamentForm = ({ onFinish }) => {
 
   const handleFinish = (values) => {
     onFinish(values); // Process the form values here
-    Modal.success({
+    message.success({
       content: "Turniej został pomyślnie zapisany!",
     });
   };
 
   return (
     <Form name="manager" onFinish={handleFinish} autoComplete="off">
-      <h1>Nazwa turnieju</h1>
+      <h1>
+        {" "}
+        <TrophyOutlined />
+        Nazwa turnieju
+      </h1>
       <Form.Item
         name="name"
         rules={[

@@ -7,6 +7,7 @@ import {
   DatePicker,
   Button,
   Modal,
+  message,
 } from "antd";
 
 const { Option } = Select;
@@ -14,7 +15,7 @@ const { Option } = Select;
 const PlayerForm = ({ onFinish }) => {
   const handleFinish = (values) => {
     onFinish(values); // Process the form values here
-    Modal.success({
+    message.success({
       content: "Zawodnik został pomyślnie zapisany!",
     });
   };
