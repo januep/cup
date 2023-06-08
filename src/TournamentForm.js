@@ -38,7 +38,7 @@ const TournamentForm = ({ onFinish }) => {
           },
         ]}
       >
-        <Input placeholder="Tournament name" />
+        <Input placeholder="Paryż WTA, ziemna" />
       </Form.Item>
       <Divider orientation="left">Pierwszy półfinał</Divider>
       <Form.Item
@@ -127,7 +127,7 @@ const TournamentForm = ({ onFinish }) => {
         </Select>
       </Form.Item>
       <Form.Item>
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" ghost>
           Zapisz turniej
         </Button>
       </Form.Item>

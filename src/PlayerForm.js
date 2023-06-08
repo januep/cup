@@ -10,6 +10,7 @@ import {
   message,
   Divider,
 } from "antd";
+import { UserOutlined } from "@ant-design/icons";
 
 const { Option } = Select;
 
@@ -23,7 +24,9 @@ const PlayerForm = ({ onFinish }) => {
 
   return (
     <Form name="manager" onFinish={handleFinish} autoComplete="off">
-      <Divider orientation="left">Wprowadź dane zawodnika</Divider>
+      <Divider orientation="left">
+        <UserOutlined /> Wprowadź dane zawodnika
+      </Divider>
       {/* <Form.Item
         name="id"
         label="ID"
@@ -47,7 +50,7 @@ const PlayerForm = ({ onFinish }) => {
           },
         ]}
       >
-        <Input placeholder="Name" />
+        <Input placeholder="Anna" />
       </Form.Item>
 
       <Form.Item
@@ -60,7 +63,7 @@ const PlayerForm = ({ onFinish }) => {
           },
         ]}
       >
-        <Input placeholder="Surname" />
+        <Input placeholder="Kowalska" />
       </Form.Item>
 
       <Form.Item
@@ -73,7 +76,7 @@ const PlayerForm = ({ onFinish }) => {
           },
         ]}
       >
-        <InputNumber placeholder="Points" />
+        <InputNumber placeholder="1000" />
       </Form.Item>
       <Form.Item
         name="weight"
@@ -85,7 +88,7 @@ const PlayerForm = ({ onFinish }) => {
           },
         ]}
       >
-        <InputNumber placeholder="Weight" />
+        <InputNumber placeholder="55" />
       </Form.Item>
       <Form.Item
         name="height"
@@ -97,7 +100,7 @@ const PlayerForm = ({ onFinish }) => {
           },
         ]}
       >
-        <InputNumber placeholder="Height" />
+        <InputNumber placeholder="172" />
       </Form.Item>
       <Form.Item
         name="nationality"
@@ -109,12 +112,12 @@ const PlayerForm = ({ onFinish }) => {
           },
         ]}
       >
-        <Select placeholder="Select a nationality" allowClear>
-          <Select.Option value="PL">Polish</Select.Option>
-          <Select.Option value="US">American</Select.Option>
-          <Select.Option value="DE">German</Select.Option>
-          <Select.Option value="FR">French</Select.Option>
-          <Select.Option value="ES">Spanish</Select.Option>
+        <Select placeholder="Polska" allowClear>
+          <Select.Option value="PL">Polska</Select.Option>
+          <Select.Option value="US">Stany Zjednoczone</Select.Option>
+          <Select.Option value="DE">Niemcy</Select.Option>
+          <Select.Option value="FR">Francja</Select.Option>
+          <Select.Option value="ES">Hiszpania</Select.Option>
         </Select>
       </Form.Item>
       <Form.Item
@@ -127,10 +130,10 @@ const PlayerForm = ({ onFinish }) => {
           },
         ]}
       >
-        <DatePicker placeholder="Select a birth date" />
+        <DatePicker placeholder="01.01.2001" />
       </Form.Item>
       <Form.Item>
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" ghost>
           Zapisz
         </Button>
       </Form.Item>
