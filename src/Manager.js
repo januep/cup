@@ -2,23 +2,22 @@ import React, { useState } from "react";
 import { Button, Row, Col } from "antd";
 import { PlusOutlined, MinusOutlined } from "@ant-design/icons";
 import PlayerForm from "./PlayerForm"; // Pamiętaj, aby dostosować ścieżkę do pliku PlayerForm.js
+import TournamentForm from "./TournamentForm"; // Pamiętaj, aby dostosować ścieżkę do pliku TournamentForm.js
 
 const Manager = () => {
-  const [isPlayerFormVisible, setPlayerFormVisible] = useState(false);
-  const [isTournamentFormVisible, setTournamentFormVisible] = useState(false);
+  const [formType, setFormType] = useState(null);
 
   const onFinish = (values) => {
     console.log("Received values from form: ", values);
-    setPlayerFormVisible(false); // ukrywa formularz po zakończeniu
-    setTournamentFormVisible(false); // ukrywa formularz po zakończeniu
+    setFormType(null); // ukrywa formularz po zakończeniu
   };
 
-  const togglePlayerFormVisible = () => {
-    setPlayerFormVisible(!isPlayerFormVisible);
-  };
-
-  const toggleTournamentFormVisible = () => {
-    setTournamentFormVisible(!isTournamentFormVisible);
+  const toggleForm = (type) => {
+    if (formType === type) {
+      setFormType(null);
+    } else {
+      setFormType(type);
+    }
   };
 
   return (
@@ -33,10 +32,10 @@ const Manager = () => {
           <Button
             type="primary"
             ghost
-            icon={isPlayerFormVisible ? <MinusOutlined /> : <PlusOutlined />}
-            onClick={togglePlayerFormVisible}
+            icon={formType === "player" ? <MinusOutlined /> : <PlusOutlined />}
+            onClick={() => toggleForm("player")}
           >
-            {isPlayerFormVisible ? "Ukryj formularz gracza" : "Dodaj gracza"}
+            {formType === "player" ? "Ukryj formularz gracza" : "Dodaj gracza"}
           </Button>
         </Col>
 
@@ -45,20 +44,20 @@ const Manager = () => {
             type="primary"
             ghost
             icon={
-              isTournamentFormVisible ? <MinusOutlined /> : <PlusOutlined />
+              formType === "tournament" ? <MinusOutlined /> : <PlusOutlined />
             }
-            onClick={toggleTournamentFormVisible}
+            onClick={() => toggleForm("tournament")}
           >
-            {isTournamentFormVisible
+            {formType === "tournament"
               ? "Ukryj formularz turnieju"
               : "Dodaj turniej"}
           </Button>
         </Col>
       </Row>
 
-      {isPlayerFormVisible && <PlayerForm onFinish={onFinish} />}
+      {formType === "player" && <PlayerForm onFinish={onFinish} />}
 
-      {isTournamentFormVisible && <PlayerForm onFinish={onFinish} />}
+      {formType === "tournament" && <TournamentForm onFinish={onFinish} />}
     </div>
   );
 };
