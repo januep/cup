@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Select, Button, Modal, Input, message } from "antd";
+import { Form, Select, Button, Modal, Input, message, Divider } from "antd";
 import players from "./players.json";
 import { TrophyOutlined } from "@ant-design/icons";
 
@@ -25,11 +25,10 @@ const TournamentForm = ({ onFinish }) => {
 
   return (
     <Form name="manager" onFinish={handleFinish} autoComplete="off">
-      <h1>
+      <Divider>
         {" "}
-        <TrophyOutlined />
-        Nazwa turnieju
-      </h1>
+        <TrophyOutlined /> Nazwa turnieju
+      </Divider>
       <Form.Item
         name="name"
         rules={[
@@ -41,7 +40,7 @@ const TournamentForm = ({ onFinish }) => {
       >
         <Input placeholder="Tournament name" />
       </Form.Item>
-      <h1>Pierwszy półfinał</h1>
+      <Divider>Pierwszy półfinał</Divider>
       <Form.Item
         name="semiFinal1Player1"
         rules={[
@@ -84,7 +83,7 @@ const TournamentForm = ({ onFinish }) => {
           ))}
         </Select>
       </Form.Item>
-      <h1>Drugi półfinał</h1>
+      <Divider>Drugi półfinał</Divider>
       <Form.Item
         name="semiFinal2Player1"
         rules={[

@@ -7,8 +7,13 @@ const Login = ({ onLogin }) => {
   const [password, setPassword] = useState("");
 
   const handleLogin = () => {
+    console.log(username, password);
     // For now, just pass the username and password to the onLogin function
-    onLogin(username, password);
+    if (username === "admin" && password === "admin") {
+      onLogin(true);
+    } else {
+      onLogin(false);
+    }
     message.success("Pomyślnie zalogowano"); // display success message
   };
 
@@ -22,6 +27,7 @@ const Login = ({ onLogin }) => {
         >
           <Input
             value={username}
+            placeholder="admin"
             onChange={(e) => setUsername(e.target.value)}
           />
         </Form.Item>
@@ -29,8 +35,9 @@ const Login = ({ onLogin }) => {
           label="Hasło"
           rules={[{ required: true, message: "Please input your password!" }]}
         >
-          <Input.Password
+          <Input
             value={password}
+            placeholder="admin"
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Item>

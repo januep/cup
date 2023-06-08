@@ -8,9 +8,8 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
-
 
 .App-header {
   background-color: #282c34;
@@ -24,9 +23,8 @@ body {
 }
 
 .App-link {
-  color: #61dafb;
+  color: #91d400;
 }
-
 
 /* ... (inne style) ... */
 
@@ -34,3 +32,9 @@ body {
 .ant-menu.ant-menu-dark .ant-menu-item-selected {
   background-color: #91d400; /* Tu wpisz żądany kolor */
 }
+
+/* .ant-btn-primary {
+  background-color: darkgreen !important;
+  border-color: darkgreen !important;
+  color: white;
+} */

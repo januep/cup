@@ -8,6 +8,7 @@ import {
   Button,
   Modal,
   message,
+  Divider,
 } from "antd";
 
 const { Option } = Select;
@@ -22,9 +23,10 @@ const PlayerForm = ({ onFinish }) => {
 
   return (
     <Form name="manager" onFinish={handleFinish} autoComplete="off">
-      <br />
-      <Form.Item
+      <Divider>Wprowadź dane zawodnika</Divider>
+      {/* <Form.Item
         name="id"
+        label="ID"
         rules={[
           {
             required: true,
@@ -33,10 +35,11 @@ const PlayerForm = ({ onFinish }) => {
         ]}
       >
         <InputNumber placeholder="Player ID" />
-      </Form.Item>
+      </Form.Item> */}
 
       <Form.Item
         name="name"
+        label="Imię"
         rules={[
           {
             required: true,
@@ -49,6 +52,7 @@ const PlayerForm = ({ onFinish }) => {
 
       <Form.Item
         name="surname"
+        label="Nazwisko"
         rules={[
           {
             required: true,
@@ -61,6 +65,7 @@ const PlayerForm = ({ onFinish }) => {
 
       <Form.Item
         name="points"
+        label="Punkty"
         rules={[
           {
             required: true,
@@ -72,6 +77,7 @@ const PlayerForm = ({ onFinish }) => {
       </Form.Item>
       <Form.Item
         name="weight"
+        label="Waga"
         rules={[
           {
             required: true,
@@ -83,6 +89,7 @@ const PlayerForm = ({ onFinish }) => {
       </Form.Item>
       <Form.Item
         name="height"
+        label="Wzrost"
         rules={[
           {
             required: true,
@@ -94,6 +101,7 @@ const PlayerForm = ({ onFinish }) => {
       </Form.Item>
       <Form.Item
         name="nationality"
+        label="Narodowość"
         rules={[
           {
             required: true,
@@ -111,6 +119,7 @@ const PlayerForm = ({ onFinish }) => {
       </Form.Item>
       <Form.Item
         name="birthDate"
+        label="Data urodzenia"
         rules={[
           {
             required: true,
