@@ -2,8 +2,13 @@ import { Link } from "react-router-dom";
 import { Layout, Menu, Button } from "antd";
 import { LogoutOutlined } from "@ant-design/icons";
 import { ReactComponent as Logo } from "./logo.svg";
+import { useEffect } from "react";
 
-const TennisHeader = ({ isLoggedIn, onLogout }) => {
+const TennisHeader = ({ isLoggedIn, isAdmin, onLogout }) => {
+  useEffect(() => {
+    console.log("isLoggedIn:", isLoggedIn);
+    console.log("isAdmin:", isAdmin);
+  }, [isLoggedIn, isAdmin]);
   return (
     <Layout.Header
       style={{
@@ -25,16 +30,21 @@ const TennisHeader = ({ isLoggedIn, onLogout }) => {
         />
       </Link>
       <Menu style={{ background: "#3A5400" }} theme="dark" mode="horizontal">
-        <Menu.Item key="1">
-          <Link to="/matches">Wyniki</Link>
-        </Menu.Item>
-        <Menu.Item key="2">
-          <Link to="/players">Ranking</Link>
-        </Menu.Item>
-        <Menu.Item key="3">
-          <Link to="/manager">Menedżer</Link>
-        </Menu.Item>
-
+        {isLoggedIn && (
+          <Menu.Item key="1">
+            <Link to="/matches">Wyniki</Link>
+          </Menu.Item>
+        )}
+        {isLoggedIn && (
+          <Menu.Item key="2">
+            <Link to="/players">Ranking</Link>
+          </Menu.Item>
+        )}
+        {isLoggedIn && isAdmin && (
+          <Menu.Item key="3">
+            <Link to="/manager">Menedżer</Link>
+          </Menu.Item>
+        )}
         {isLoggedIn && (
           <Button
             icon={<LogoutOutlined />}

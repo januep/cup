@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Row, Col } from "antd";
-import { PlusOutlined, MinusOutlined, TrophyOutlined } from "@ant-design/icons";
+import { PlusOutlined, MinusOutlined } from "@ant-design/icons";
 import PlayerForm from "./PlayerForm"; // Pamiętaj, aby dostosować ścieżkę do pliku PlayerForm.js
 import TournamentForm from "./TournamentForm"; // Pamiętaj, aby dostosować ścieżkę do pliku TournamentForm.js
 
