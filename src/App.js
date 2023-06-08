@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Layout } from "antd";
 import "./App.css";
 import TennisHeader from "./TennisHeader";
@@ -13,19 +14,27 @@ const { Content, Footer } = Layout;
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false); // Add this line
 
-  const handleLogin = () => {
+  const handleLogin = (isAdmin) => {
     setIsLoggedIn(true);
+    setIsAdmin(isAdmin);
   };
 
   const handleLogout = () => {
     setIsLoggedIn(false);
+    setIsAdmin(false); // Reset isAdmin on logout
   };
 
   return (
     <Router>
       <Layout className="layout">
-        <TennisHeader isLoggedIn={isLoggedIn} onLogout={handleLogout} />
+        <TennisHeader
+          isLoggedIn={isLoggedIn}
+          isAdmin={isAdmin} // Dodaj tę linię
+          onLogout={handleLogout}
+        />
+
         <Content style={{ padding: "0 50px" }}>
           <div className="site-layout-content">
             {isLoggedIn ? (
@@ -34,14 +43,14 @@ function App() {
                 <Route path="/matches" element={<MatchList />} />
                 <Route path="/" element={<MatchList />} />
                 <Route path="/player/:id" element={<PlayerProfile />} />
-                <Route path="/manager" element={<Manager />} />
+                {isAdmin && <Route path="/manager" element={<Manager />} />}
               </Routes>
             ) : (
               <Login onLogin={handleLogin} />
             )}
           </div>
         </Content>
-        <Footer style={{ textAlign: "center" }}>Tennis4U @2023</Footer>
+        <Footer style={{ textAlign: "center" }}>@2023 Tennis4U</Footer>
       </Layout>
     </Router>
   );
