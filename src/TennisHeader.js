@@ -45,6 +45,11 @@ const TennisHeader = ({ isLoggedIn, isAdmin, onLogout }) => {
             <Link to="/manager">Menedżer</Link>
           </Menu.Item>
         )}
+          {isLoggedIn && (
+              <Menu.Item key="4">
+                  <Link to="/apitest">Api Test</Link>
+              </Menu.Item>
+          )}
         {isLoggedIn && (
           <Button
             icon={<LogoutOutlined />}

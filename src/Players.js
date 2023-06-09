@@ -1,13 +1,10 @@
-import React from "react";
-import { Table } from "antd";
+import React, { useEffect, useState } from "react";
+import { Table, Spin } from "antd";
 import { CustomFlagIconFactory as FlagIconFactory } from "react-flag-icon-css";
 import { calculateAge } from "./utils";
-import players from "./players.json";
 import { useNavigate } from "react-router-dom";
 
-const FlagIcon = FlagIconFactory(React, { useCssModules: false });
-
-const columns = [
+const FlagIcon = FlagIconFactory(React, { useCssModules: false });const columns = [
   {
     title: "Pozycja",
     dataIndex: "ranking",
@@ -60,9 +57,34 @@ const columns = [
     responsive: ["md"],
   },
 ];
-
 function Players() {
+  const [players, setPlayers] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch('http://localhost:8765/api/player/players')
+        .then(response => response.json())
+        .then(data => {
+          const transformedData = data.map(player => ({
+            id: player.player_id,
+            firstName: player.first_name,
+            lastName: player.last_name,
+            ranking: player.ranking,
+            nationality: player.nationality,
+            dateOfBirth: new Date(player.dateOfBirth),
+            height: player.height,
+            weight: player.weight,
+            points: player.points,
+          }));
+          setPlayers(transformedData);
+          setLoading(false);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          setLoading(false);
+        });
+  }, []);
 
   const onRowClick = (record, rowIndex) => {
     return {
@@ -73,12 +95,14 @@ function Players() {
   };
 
   return (
-    <Table
-      dataSource={players}
-      columns={columns}
-      rowKey="id"
-      onRow={onRowClick}
-    />
+      <Spin spinning={loading}>
+        <Table
+            dataSource={players}
+            columns={columns}
+            rowKey="id"
+            onRow={onRowClick}
+        />
+      </Spin>
   );
 }
 
