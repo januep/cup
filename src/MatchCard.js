@@ -4,7 +4,6 @@ import FlagIconFactory from "react-flag-icon-css";
 import { Link } from "react-router-dom";
 
 const FlagIcon = FlagIconFactory(React, { useCssModules: false });
-//dupa
 const MatchCard = ({ match }) => {
   return (
     <Col key={match.id} xs={24} sm={12} md={8} lg={6}>

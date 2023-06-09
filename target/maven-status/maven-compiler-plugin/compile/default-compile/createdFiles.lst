@@ -1,0 +1,7 @@
+com\uep\wap\controller\StudentController.class
+com\uep\wap\model\Student.class
+com\uep\wap\service\StudentsService.class
+com\uep\wap\repository\StudentRepository.class
+com\uep\wap\dto\StudentDTO.class
+com\uep\wap\dto\StudentsDataDTO.class
+com\uep\wap\WapApplication.class

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Layout } from "antd";
+import { Layout, message } from "antd";
 import "./App.css";
 import TennisHeader from "./TennisHeader";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
@@ -24,6 +24,9 @@ function App() {
   const handleLogout = () => {
     setIsLoggedIn(false);
     setIsAdmin(false); // Reset isAdmin on logout
+    message.success({
+      content: "Pomyślnie wylogowano!",
+    });
   };
 
   return (

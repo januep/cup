@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
-import { Descriptions, Avatar, Row } from "antd";
+import { Descriptions, Avatar, Row, Divider } from "antd";
 import data from "./players.json";
 import matches from "./matches.json";
 import { CustomFlagIconFactory as FlagIconFactory } from "react-flag-icon-css";
@@ -29,31 +29,31 @@ function PlayerProfile() {
   return (
     <div>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <Avatar size={512} src={require(`./${player.image}`)} />
+        <Avatar size={256} src={require(`./${player.image}`)} />
       </div>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <h1>{player.firstName + " " + player.lastName}</h1>
+        <Divider>{player.firstName + " " + player.lastName}</Divider>
       </div>
       <Descriptions
         bordered
         column={{ xxl: 4, xl: 3, lg: 3, md: 3, sm: 2, xs: 1 }}
       >
-        <Descriptions.Item label="Ranking">
+        <Descriptions.Item label="Pozycja">
           <Link to="/players">{player.ranking}</Link>
         </Descriptions.Item>
 
-        <Descriptions.Item label="Nationality">
+        <Descriptions.Item label="Narodowość">
           <FlagIcon code={player.nationality.toLowerCase()} />
         </Descriptions.Item>
-        <Descriptions.Item label="Date of Birth">
-          {player.dateOfBirth} ({calculateAge(player.dateOfBirth)} yo)
+        <Descriptions.Item label="Data urodzenia">
+          {player.dateOfBirth} ({calculateAge(player.dateOfBirth)})
         </Descriptions.Item>
-        <Descriptions.Item label="Height">{player.height} cm</Descriptions.Item>
-        <Descriptions.Item label="Weight">{player.weight} kg</Descriptions.Item>
-        <Descriptions.Item label="Points">{player.points}</Descriptions.Item>
+        <Descriptions.Item label="Wzrost">{player.height} cm</Descriptions.Item>
+        <Descriptions.Item label="Waga">{player.weight} kg</Descriptions.Item>
+        <Descriptions.Item label="Punkty">{player.points}</Descriptions.Item>
       </Descriptions>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <h2>Mecze zawodniczki</h2>
+        <Divider orientation="left">Mecze zawodniczki</Divider>
       </div>
       <Row gutter={[16, 16]}>
         {playerMatches.map((match) => (
