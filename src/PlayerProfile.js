@@ -77,6 +77,7 @@ const FlagIcon = FlagIconFactory(React, { useCssModules: false });
 function PlayerProfile() {
     const { id } = useParams();
     const [player, setPlayer] = useState(null);
+    const [matches, setMatches] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -85,6 +86,16 @@ function PlayerProfile() {
             .then(data => {
                 const playerData = data.find((p) => p.player_id === Number(id));
                 setPlayer(playerData);
+                setLoading(false);
+            });
+    }, [id]);
+
+    useEffect(() => {
+        fetch('http://localhost:8765/api/match/matches')
+            .then(response => response.json())
+            .then(data => {
+                const playerMatches = data.filter((match) => match.player1.player_id === Number(id) || match.player2.player_id === Number(id));
+                setMatches(playerMatches);
                 setLoading(false);
             });
     }, [id]);
@@ -98,7 +109,7 @@ function PlayerProfile() {
     }
 
     return (
-        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+        <div style={{ margin: '0 auto' }}>
             <Divider>{player.first_name + " " + player.last_name}</Divider>
             <Divider><FlagIcon code={player.nationality.toLowerCase()} size={"lg"} /></Divider>
             <Descriptions
@@ -115,6 +126,12 @@ function PlayerProfile() {
                 <Descriptions.Item label="Waga">{player.weight} kg</Descriptions.Item>
                 <Descriptions.Item label="Punkty">{player.points}</Descriptions.Item>
             </Descriptions>
+            <Divider >Mecze zawodniczki:</Divider>
+            <Row gutter={16} justify="center">
+                {matches && matches.map((match) => (
+                    <MatchCard match={match} key={match.match_id} loading={loading} />
+                ))}
+            </Row>
         </div>
     );
 }

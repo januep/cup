@@ -31,7 +31,7 @@ const FlagIcon = FlagIconFactory(React, { useCssModules: false });const columns 
   {
     title: "Narodowość",
     dataIndex: "nationality",
-    render: (nationality) => <FlagIcon code={nationality.toLowerCase()} />,
+    render: (nationality) => <FlagIcon size={"lg"} code={nationality.toLowerCase()} />,
     responsive: ["sm"],
   },
   {
