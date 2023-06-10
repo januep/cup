@@ -35,6 +35,7 @@ public class Bracket implements Serializable {
     private String start_date;
 
     @OneToMany(mappedBy = "bracket", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Match> matches;
 
     public List<Match> getMatches() {

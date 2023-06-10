@@ -1,6 +1,7 @@
 package com.uep.wap.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -38,10 +39,12 @@ public class Match implements Serializable {
     private Player player2;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "supervisor_id")
     private Supervisor supervisor;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "bracket_id")
     private Bracket bracket;
 
