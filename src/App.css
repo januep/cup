@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200&display=swap");
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+body {
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #91d400;
+}
+
+/* ... (inne style) ... */
+
+/* Zwiększona specyficzność selektora */
+.ant-menu.ant-menu-dark .ant-menu-item-selected {
+  background-color: #91d400; /* Tu wpisz żądany kolor */
+}
+
+/* .ant-btn-primary {
+  background-color: darkgreen !important;
+  border-color: darkgreen !important;
+  color: white;
+} */
