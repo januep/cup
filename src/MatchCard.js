@@ -10,7 +10,7 @@ const MatchCard = ({ match, loading }) => {
     const awayPlayerName = `${match.player2.last_name}`;
 
     return (
-        <Col key={match.match_id} xs={24} sm={12} md={8} lg={6} xl={4}>
+        <Col key={match.match_id} xs={24} sm={12} md={8} lg={6} xl={4.5}>
             <Spin spinning={loading} size="large">
                 <Card
                     title={`${match.title} - ${match.bracket ? match.bracket.tournament_name : ''}`}
@@ -31,7 +31,7 @@ const MatchCard = ({ match, loading }) => {
                                     size={"lg"}
                                     style={{ marginBottom: 10 }}
                                 />
-                                <span style={{ fontSize: '17px', display: 'block' }}>{homePlayerName}</span>
+                                <span style={{ fontSize: '16px', display: 'block' }}>{homePlayerName}</span>
                             </Link>
                         </Col>
                         <Col span={8} style={{ textAlign: "center", alignItems: "center", display: "flex", flexDirection: "column", justifyContent: "center" }}>
@@ -46,7 +46,7 @@ const MatchCard = ({ match, loading }) => {
                                     size={"lg"}
                                     style={{ marginBottom: 10 }}
                                 />
-                                <span style={{ fontSize: '17px', display: 'block' }}>{awayPlayerName}</span>
+                                <span style={{ fontSize: '16px', display: 'block' }}>{awayPlayerName}</span>
                             </Link>
                         </Col>
                     </Row>
