@@ -1,109 +1,123 @@
+
+
 import React, { useEffect, useState } from "react";
 import { Table, Spin } from "antd";
 import { CustomFlagIconFactory as FlagIconFactory } from "react-flag-icon-css";
 import { calculateAge } from "./utils";
 import { useNavigate } from "react-router-dom";
 
-const FlagIcon = FlagIconFactory(React, { useCssModules: false });const columns = [
-  {
-    title: "Pozycja",
-    dataIndex: "ranking",
-    sorter: (a, b) => a.ranking - b.ranking,
-  },
-  {
-    title: "Imię",
-    dataIndex: "firstName",
-    sorter: (a, b) => a.firstName.localeCompare(b.firstName),
-    responsive: ["lg"],
-  },
-  {
-    title: "Nazwisko",
-    dataIndex: "lastName",
+const FlagIcon = FlagIconFactory(React, { useCssModules: false });
 
-    sorter: (a, b) => a.lastName.localeCompare(b.lastName),
-  },
-  {
-    title: "Punkty",
-    dataIndex: "points",
-    sorter: (a, b) => Number(a.points) - Number(b.points),
-    sortDirections: ["descend", "ascend"],
-  },
-  {
-    title: "Narodowość",
-    dataIndex: "nationality",
-    render: (nationality) => <FlagIcon size={"lg"} code={nationality.toLowerCase()} />,
-    responsive: ["sm"],
-  },
-  {
-    title: "Wiek",
-    dataIndex: "dateOfBirth",
-    render: (dob) => calculateAge(dob),
-    sorter: (a, b) => calculateAge(a.dateOfBirth) - calculateAge(b.dateOfBirth),
-    sortDirections: ["descend", "ascend"],
-    responsive: ["md"],
-  },
-  {
-    title: "Wzrost",
-    dataIndex: "height",
-    render: (height) => `${height} cm`,
-    sorter: (a, b) => a.height - b.height,
-    responsive: ["md"],
-  },
-  {
-    title: "Waga",
-    dataIndex: "weight",
-    render: (weight) => `${weight} kg`,
-    sorter: (a, b) => a.weight - b.weight,
-    responsive: ["md"],
-  },
+const columns = [
+    {
+        title: "Pozycja",
+        dataIndex: "position",
+        sorter: (a, b) => Number(a.position) - Number(b.position),
+        sortDirections: ["ascend", "descend"],
+    },
+    {
+        title: "Imię",
+        dataIndex: "firstName",
+        sorter: (a, b) => a.firstName.localeCompare(b.firstName),
+        responsive: ["lg"],
+    },
+    {
+        title: "Nazwisko",
+        dataIndex: "lastName",
+        sorter: (a, b) => a.lastName.localeCompare(b.lastName),
+    },
+    {
+        title: "Punkty",
+        dataIndex: "points",
+        sorter: (a, b) => Number(a.points) - Number(b.points),
+        sortDirections: ["descend", "ascend"],
+    },
+    {
+        title: "Narodowość",
+        dataIndex: "nationality",
+        render: (nationality) => <FlagIcon size={"lg"} code={nationality.toLowerCase()} />,
+        responsive: ["sm"],
+    },
+    {
+        title: "Wiek",
+        dataIndex: "dateOfBirth",
+        render: (dob) => calculateAge(dob),
+        sorter: (a, b) => calculateAge(a.dateOfBirth) - calculateAge(b.dateOfBirth),
+        sortDirections: ["descend", "ascend"],
+        responsive: ["md"],
+    },
+    {
+        title: "Wzrost",
+        dataIndex: "height",
+        render: (height) => `${height} cm`,
+        sorter: (a, b) => a.height - b.height,
+        responsive: ["md"],
+    },
+    {
+        title: "Waga",
+        dataIndex: "weight",
+        render: (weight) => `${weight} kg`,
+        sorter: (a, b) => a.weight - b.weight,
+        responsive: ["md"],
+    },
 ];
+
 function Players() {
-  const [players, setPlayers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
+    const [players, setPlayers] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
-  useEffect(() => {
-    fetch('http://localhost:8765/api/player/players')
-        .then(response => response.json())
-        .then(data => {
-          const transformedData = data.map(player => ({
-            id: player.player_id,
-            firstName: player.first_name,
-            lastName: player.last_name,
-            ranking: player.ranking,
-            nationality: player.nationality,
-            dateOfBirth: new Date(player.dateOfBirth),
-            height: player.height,
-            weight: player.weight,
-            points: player.points,
-          }));
-          setPlayers(transformedData);
-          setLoading(false);
-        })
-        .catch(error => {
-          console.error('Error:', error);
-          setLoading(false);
-        });
-  }, []);
+    useEffect(() => {
+        fetch('http://localhost:8765/api/player/players')
+            .then(response => response.json())
+            .then(data => {
+                // Sortujemy graczy wg punktów
+                const sortedData = [...data].sort((a, b) => b.points - a.points);
 
-  const onRowClick = (record, rowIndex) => {
-    return {
-      onClick: (event) => {
-        navigate(`/player/${record.id}`);
-      },
+                // Dodajemy do każdego gracza pole 'position'
+                const transformedData = sortedData.map((player, index) => ({
+                    position: index + 1,  // Dodajemy 1, bo indeksy zaczynają się od 0
+                    id: player.player_id,
+                    firstName: player.first_name,
+                    lastName: player.last_name,
+                    ranking: player.ranking,
+                    nationality: player.nationality,
+                    dateOfBirth: new Date(player.dateOfBirth),
+                    height: player.height,
+                    weight: player.weight,
+                    points: player.points,
+                }));
+                setPlayers(transformedData);
+                setLoading(false);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                setLoading(false);
+            });
+    }, []);
+
+    const onRowClick = (record, rowIndex) => {
+        return {
+            onClick: (event) => {
+                navigate(`/player/${record.id}`);
+            },
+        };
     };
-  };
 
-  return (
-      <Spin spinning={loading}>
-        <Table
-            dataSource={players}
-            columns={columns}
-            rowKey="id"
-            onRow={onRowClick}
-        />
-      </Spin>
-  );
+    return (
+        <Spin spinning={loading}>
+            <Table
+                dataSource={players}
+                columns={columns}
+                rowKey="id"
+                onRow={onRowClick}
+                // Dodajemy domyślne sortowanie wg pozycji
+                defaultSortOrder="ascend"
+                defaultSortField="position"
+            />
+        </Spin>
+    );
 }
 
 export default Players;
+

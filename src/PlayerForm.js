@@ -1,44 +1,53 @@
 import React from "react";
 import {
-  Form,
-  Input,
-  InputNumber,
-  Select,
-  DatePicker,
-  Button,
-  Modal,
-  message,
-  Divider,
+    Form,
+    Input,
+    InputNumber,
+    Select,
+    DatePicker,
+    Button,
+    message,
+    Divider,
 } from "antd";
 import { UserOutlined } from "@ant-design/icons";
+import axios from 'axios';
+import moment from 'moment';
 
 const { Option } = Select;
 
-const PlayerForm = ({ onFinish }) => {
-  const handleFinish = (values) => {
-    onFinish(values); // Process the form values here
-    message.success({
-      content: "Zawodnik został pomyślnie zapisany!",
-    });
-  };
+const PlayerForm = () => {
+    const handleFinish = async (values) => {
+        const playerData = {
+            first_name: values.name,
+            last_name: values.surname,
+            points: values.points,
+            weight: values.weight,
+            height: values.height,
+            nationality: values.nationality,
+            dateOfBirth: moment(values.birthDate).format('YYYY-MM-DDTHH:mm:ss.SSS[Z]'),  // Zmieniony format dat
+        };
+        console.log(playerData)
+        console.log("KURWA")
+
+        try {
+            const response = await axios.post('http://localhost:8765/api/player/add', playerData);
+               message.success({
+                    content: "Zawodnik został pomyślnie zapisany!",
+                });
+
+        } catch (error) {
+            console.error(error.response);
+            message.error({
+                content: "Coś poszło nie tak, spróbuj ponownie.",
+            });
+        }
+    };
 
   return (
     <Form name="manager" onFinish={handleFinish} autoComplete="off">
       <Divider orientation="left">
         <UserOutlined /> Wprowadź dane zawodnika
       </Divider>
-      {/* <Form.Item
-        name="id"
-        label="ID"
-        rules={[
-          {
-            required: true,
-            message: "Please input the player id!",
-          },
-        ]}
-      >
-        <InputNumber placeholder="Player ID" />
-      </Form.Item> */}
 
       <Form.Item
         name="name"
