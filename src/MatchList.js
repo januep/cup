@@ -5,6 +5,7 @@ import MatchCard from "./MatchCard";
 const MatchList = () => {
     const [matches, setMatches] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [tournaments, setTournaments] = useState([]);
 
     useEffect(() => {
         fetch('http://localhost:8765/api/match/matches')
@@ -20,36 +21,50 @@ const MatchList = () => {
     }, []);
 
     useEffect(() => {
-        const fetchTournamentNames = async () => {
+        const fetchTournaments = async () => {
             try {
                 const response = await fetch('http://localhost:8765/api/bracket/brackets');
-                const brackets = await response.json();
-
-                const matchesWithTournamentName = matches.map(match => {
-                    const bracket = brackets.find(bracket => bracket.matches.some(m => m.match_id === match.match_id));
-                    const tournamentName = bracket ? bracket.tournament_name : '';
-                    return { ...match, tournamentName };
-                });
-
-                setMatches(matchesWithTournamentName);
+                const data = await response.json();
+                setTournaments(data);
             } catch (error) {
                 console.error(error);
             }
         };
 
-        if (matches.length > 0 && !matches[0].hasOwnProperty('tournamentName')) {
-            fetchTournamentNames();
-        }
-    }, [matches]);
+        fetchTournaments();
+    }, []);
+
+    const getTournamentName = (tournamentId) => {
+        const tournament = tournaments.find(tournament => tournament.bracket_id === tournamentId);
+        return tournament ? tournament.tournament_name : "";
+    };
+
+    const getMatchesByTournament = (tournamentId) => {
+        return matches.filter(match =>
+            tournaments.some(tournament =>
+                tournament.bracket_id === tournamentId &&
+                tournament.matches.some(t => t.match_id === match.match_id)
+            )
+        );
+    };
 
     return (
         <div>
-            <Divider orientation="left">Niedawno rozegrane:</Divider>
-            <Row gutter={[16, 16]}>
-                {matches.map((match) => (
-                    <MatchCard key={match.match_id} match={match} loading={loading} tournamentName={match.tournamentName} />
-                ))}
-            </Row>
+            {tournaments.map(tournament => (
+                <div key={tournament.bracket_id}>
+                    <Divider>{tournament.tournament_name}</Divider>
+                    <Row justify="center" gutter={[16, 16]}>
+                        {getMatchesByTournament(tournament.bracket_id).map(match => (
+                            <MatchCard
+                                key={match.match_id}
+                                match={match}
+                                loading={loading}
+                                tournamentName={getTournamentName(tournament.bracket_id)}
+                            />
+                        ))}
+                    </Row>
+                </div>
+            ))}
         </div>
     );
 };
