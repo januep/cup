@@ -1,5 +1,6 @@
 package com.uep.wap.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -35,6 +36,14 @@ public class Bracket implements Serializable {
 
     @OneToMany(mappedBy = "bracket", cascade = CascadeType.ALL)
     private List<Match> matches;
+
+    public List<Match> getMatches() {
+        return matches;
+    }
+
+    public void setMatches(List<Match> matches) {
+        this.matches = matches;
+    }
 
     public Bracket(){
     }
