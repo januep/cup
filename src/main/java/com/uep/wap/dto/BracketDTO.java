@@ -1,6 +1,9 @@
 package com.uep.wap.dto;
 
+import com.uep.wap.model.Match;
+
 import javax.persistence.Column;
+import java.util.List;
 
 public class BracketDTO {
 
@@ -11,6 +14,16 @@ public class BracketDTO {
     private String tournament_location;
 
     private String start_date;
+
+    public List<MatchDTO> getMatches() {
+        return matches;
+    }
+
+    public void setMatches(List<MatchDTO> matches) {
+        this.matches = matches;
+    }
+
+    private List<MatchDTO> matches;
 
     //methods
 

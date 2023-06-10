@@ -21,11 +21,11 @@ const MatchCard = ({ match, loading }) => {
                     <img
                         alt="match"
                         src={`https://source.unsplash.com/200x100/?tennis,match${match.match_id}`}
-                        style={{ width: '100%' }}
+                        style={{ width: '100%', borderRadius: '2px' }}
                     />
                     <Row justify="center" style={{ marginTop: 16 }}>
                         <Col span={8} style={{ textAlign: "center" }}>
-                            <Link to={`/player/${match.player1.player_id}`}>
+                            <Link style={{ color: 'inherit', textDecoration: 'none' }} to={`/player/${match.player1.player_id}`}>
                                 <FlagIcon
                                     code={match.player1.nationality.toLowerCase()}
                                     size={"lg"}
@@ -40,7 +40,7 @@ const MatchCard = ({ match, loading }) => {
                             </span>
                         </Col>
                         <Col span={8} style={{ textAlign: "center" }}>
-                            <Link to={`/player/${match.player2.player_id}`}>
+                            <Link style={{ color: 'inherit', textDecoration: 'none' }} to={`/player/${match.player2.player_id}`}>
                                 <FlagIcon
                                     code={match.player2.nationality.toLowerCase()}
                                     size={"lg"}

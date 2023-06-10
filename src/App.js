@@ -9,7 +9,6 @@ import MatchList from "./MatchList";
 import PlayerProfile from "./PlayerProfile";
 import Manager from "./Manager";
 import Login from "./Login"; // Upewnij się, że ścieżka do pliku Login.js jest poprawna
-import ApiTest from "./ApiTest";
 const { Content, Footer } = Layout;
 
 function App() {
@@ -45,7 +44,7 @@ function App() {
                 <Route path="/players" element={<Players />} />
                 <Route path="/matches" element={<MatchList />} />
                 <Route path="/" element={<MatchList />} />
-                <Route path="/apitest" element={<ApiTest />} />
+
                 <Route path="/player/:id" element={<PlayerProfile />} />
                 {isAdmin && <Route path="/manager" element={<Manager />} />}
               </Routes>

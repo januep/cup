@@ -3,6 +3,12 @@ import { Layout, Menu, Button } from "antd";
 import { LogoutOutlined } from "@ant-design/icons";
 import { ReactComponent as Logo } from "./logo.svg";
 import { useEffect } from "react";
+import { TrophyOutlined, CrownOutlined, TeamOutlined } from '@ant-design/icons';
+
+
+
+
+
 
 const TennisHeader = ({ isLoggedIn, isAdmin, onLogout }) => {
   useEffect(() => {
@@ -32,24 +38,20 @@ const TennisHeader = ({ isLoggedIn, isAdmin, onLogout }) => {
       <Menu style={{ background: "#3A5400" }} theme="dark" mode="horizontal">
         {isLoggedIn && (
           <Menu.Item key="1">
-            <Link to="/matches">Wyniki</Link>
+            <Link to="/matches"><TrophyOutlined /> Wyniki</Link>
           </Menu.Item>
         )}
         {isLoggedIn && (
           <Menu.Item key="2">
-            <Link to="/players">Ranking</Link>
+            <Link to="/players"><CrownOutlined /> Ranking</Link>
           </Menu.Item>
         )}
         {isLoggedIn && isAdmin && (
           <Menu.Item key="3">
-            <Link to="/manager">Menedżer</Link>
+            <Link to="/manager"><TeamOutlined /> Menedżer</Link>
           </Menu.Item>
         )}
-          {isLoggedIn && (
-              <Menu.Item key="4">
-                  <Link to="/apitest">Api Test</Link>
-              </Menu.Item>
-          )}
+
         {isLoggedIn && (
           <Button
             icon={<LogoutOutlined />}

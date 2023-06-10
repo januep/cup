@@ -23,7 +23,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/bracket")
 public class BracketController {
-//tets
+    //tets
     @Autowired
     private BracketService bracketService;
 
@@ -33,7 +33,7 @@ public class BracketController {
     @Autowired
     private BracketRepository bracketRepository;
 
-    @PostMapping ("/add")
+    @PostMapping ("/addEmpty")
     public Bracket addBracket(@RequestBody BracketDTO bracketDTO) {
         return bracketService.createBracket(bracketDTO).getBody();
     }
@@ -46,5 +46,10 @@ public class BracketController {
     @GetMapping("/brackets")
     public List<Bracket> getAllBrackets() {
         return bracketService.getAllBrackets();
+    }
+
+    @PostMapping ("/create")
+    public Bracket createBracket(@RequestBody BracketDTO bracketDTO) {
+        return bracketService.createBracket(bracketDTO).getBody();
     }
 }
