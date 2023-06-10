@@ -25,19 +25,10 @@ public class PlayerController {
     @Autowired
     private PlayerRepository playerRepository;
 
-    /*==@PostMapping("/add")
-    public ResponseEntity<Player> createPlayer(@RequestBody PlayerDTO playerDTO) {
-        Player player = new Player();
-        player.setFirst_name(playerDTO.getFirst_name());
-        player.setLast_name(playerDTO.getLast_name());
-        player.set(playerDTO.getAge());
-        player.setNationality(playerDTO.getNationality());
-        player.setHeight(playerDTO.getHeight());
-
-        Player savedPlayer = playerRepository.save(player);
-
-        return new ResponseEntity<>(savedPlayer, HttpStatus.CREATED);
-    }*/
+    @PostMapping ("/add")
+    public Player addPlayer(@RequestBody PlayerDTO playerDTO) {
+        return playerService.createPlayer(playerDTO).getBody();
+    }
 
     @GetMapping("/{player_id}")
     public Player getPlayer(@PathVariable Integer player_id) {
