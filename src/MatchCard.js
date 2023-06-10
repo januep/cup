@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const FlagIcon = FlagIconFactory(React, { useCssModules: false });
 
-const MatchCard = ({ match, loading }) => {
+const MatchCard = ({ match, loading, tournamentName }) => {
     const homePlayerName = `${match.player1.last_name}`;
     const awayPlayerName = `${match.player2.last_name}`;
 
@@ -13,7 +13,7 @@ const MatchCard = ({ match, loading }) => {
         <Col key={match.match_id} xs={24} sm={12} md={8} lg={6} xl={4.5}>
             <Spin spinning={loading} size="large">
                 <Card
-                    title={`${match.title} - ${match.bracket ? match.bracket.tournament_name : ''}`}
+                    title={`${match.title} - ${tournamentName}`}
                     bordered={false}
                     hoverable
                     style={{ margin: "16px 0", minHeight: '200px' }}

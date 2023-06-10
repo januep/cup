@@ -14,6 +14,7 @@ function PlayerProfile() {
     const [matches, setMatches] = useState(null);
     const [loading, setLoading] = useState(true);
     const [winRatio, setWinRatio] = useState(null);
+    const [tournaments, setTournaments] = useState(null); // Dodane nowe stan
 
     useEffect(() => {
         fetch('http://localhost:8765/api/player/players')
@@ -53,6 +54,15 @@ function PlayerProfile() {
             });
     }, [id]);
 
+    useEffect(() => {
+        fetch('http://localhost:8765/api/bracket/brackets') // Dodane zapytanie do pobrania danych o turniejach
+            .then(response => response.json())
+            .then(data => {
+                setTournaments(data);
+                setLoading(false);
+            });
+    }, []); // Zmieniony pusty dependency array, aby zapytanie zostało wykonane tylko raz przy montowaniu komponentu
+
     if (loading) {
         return <Spin tip="Ładowanie..." />;
     }
@@ -76,14 +86,14 @@ function PlayerProfile() {
                 </Descriptions.Item>
                 <Descriptions.Item label="Wzrost">{player.height} cm</Descriptions.Item>
                 <Descriptions.Item label="Waga">{player.weight} kg</Descriptions.Item>
-
-
             </Descriptions>
-            <Divider >Mecze zawodniczki:</Divider>
+            <Divider>Mecze zawodniczki:</Divider>
             <Row gutter={16} justify="center">
-                {matches && matches.map((match) => (
-                    <MatchCard match={match} key={match.match_id} loading={loading} />
-                ))}
+                {matches &&
+                    matches.map(match => {
+                        const tournamentName = tournaments?.find(bracket => bracket.matches.some(m => m.match_id === match.match_id))?.tournament_name;
+                        return <MatchCard match={match} key={match.match_id} tournamentName={tournamentName} loading={loading} />;
+                    })}
             </Row>
         </div>
     );

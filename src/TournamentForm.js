@@ -4,7 +4,6 @@ import { TrophyOutlined } from "@ant-design/icons";
 import axios from 'axios';
 import { CustomFlagIconFactory as FlagIconFactory } from "react-flag-icon-css";
 
-
 const { Option } = Select;
 const FlagIcon = FlagIconFactory(React, { useCssModules: false });
 
@@ -34,16 +33,60 @@ const TournamentForm = ({ onFinish }) => {
     };
 
     const handleFinish = (values) => {
-        onFinish(values);
-        message.success({
-            content: "Turniej został pomyślnie zapisany!",
-        });
+        const { name, ...rest } = values;
+        const tournamentData = {
+            tournament_name: name,
+            tournament_location: "GER",
+            start_date: "2023-06-10",
+            matches: [
+                {
+                    title: "Półfinał 1",
+                    homeScore: 2,
+                    awayScore: 1,
+                    date: "2023-06-12",
+                    player1_id: rest.semiFinal1Player1.value,
+                    player2_id: rest.semiFinal1Player2.value,
+                    supervisor_id: 1
+                },
+                {
+                    title: "Półfinał 2",
+                    homeScore: 1,
+                    awayScore: 2,
+                    date: "2023-06-14",
+                    player1_id: rest.semiFinal2Player1.value,
+                    player2_id: rest.semiFinal2Player2.value,
+                    supervisor_id: 2
+                },
+                {
+                    title: "Finał",
+                    homeScore: 1,
+                    awayScore: 2,
+                    date: "2023-06-10",
+                    player1_id: rest.semiFinal1Player1.value,
+                    player2_id: rest.semiFinal2Player2.value,
+                    supervisor_id: 5
+                }
+            ]
+        };
+
+        axios.post('http://localhost:8765/api/bracket/create', tournamentData)
+            .then(() => {
+                onFinish(values);
+                message.success({
+                    content: "Turniej został pomyślnie zapisany!",
+                });
+            })
+            .catch((error) => {
+                console.error("Error creating tournament: ", error);
+                message.error({
+                    content: 'Błąd podczas tworzenia turnieju!',
+                });
+            });
     };
 
     return (
         <Form name="manager" onFinish={handleFinish} autoComplete="off">
             <Divider orientation="left">
-                {" "}
                 <TrophyOutlined /> Nazwa turnieju
             </Divider>
             <Form.Item
@@ -74,7 +117,7 @@ const TournamentForm = ({ onFinish }) => {
                     filterOption={filterOptions}
                 >
                     {players.map((player) => (
-                        <Option key={player.player_id} value={player.last_name}>
+                        <Option key={player.player_id} value={player.player_id}>
                             <div style={{ display: 'flex', alignItems: 'center' }}>
                                 <FlagIcon size={"lg"} code={player.nationality.toLowerCase()} />
                                 <span style={{ marginLeft: '8px' }}>{player.first_name} {player.last_name}</span>
@@ -99,7 +142,7 @@ const TournamentForm = ({ onFinish }) => {
                     filterOption={filterOptions}
                 >
                     {players.map((player) => (
-                        <Option key={player.player_id} value={player.last_name}>
+                        <Option key={player.player_id} value={player.player_id}>
                             <div style={{ display: 'flex', alignItems: 'center' }}>
                                 <FlagIcon size={"lg"} code={player.nationality.toLowerCase()} />
                                 <span style={{ marginLeft: '8px' }}>{player.first_name} {player.last_name}</span>
@@ -125,7 +168,7 @@ const TournamentForm = ({ onFinish }) => {
                     filterOption={filterOptions}
                 >
                     {players.map((player) => (
-                        <Option key={player.player_id} value={player.last_name}>
+                        <Option key={player.player_id} value={player.player_id}>
                             <div style={{ display: 'flex', alignItems: 'center' }}>
                                 <FlagIcon size={"lg"} code={player.nationality.toLowerCase()} />
                                 <span style={{ marginLeft: '8px' }}>{player.first_name} {player.last_name}</span>
@@ -150,7 +193,7 @@ const TournamentForm = ({ onFinish }) => {
                     filterOption={filterOptions}
                 >
                     {players.map((player) => (
-                        <Option key={player.player_id} value={player.last_name}>
+                        <Option key={player.player_id} value={player.player_id}>
                             <div style={{ display: 'flex', alignItems: 'center' }}>
                                 <FlagIcon size={"lg"} code={player.nationality.toLowerCase()} />
                                 <span style={{ marginLeft: '8px' }}>{player.first_name} {player.last_name}</span>
@@ -169,132 +212,3 @@ const TournamentForm = ({ onFinish }) => {
 };
 
 export default TournamentForm;
-
-
-
-// import { Form, Input, Button, Select, DatePicker } from 'antd';
-// import { useEffect, useState } from 'react';
-// import axios from 'axios';
-//
-// const TournamentForm = () => {
-//     const [players, setPlayers] = useState([]);
-//     const [form] = Form.useForm();
-//     const { Option } = Select;
-//
-//     const fetchPlayers = async () => {
-//         const result = await axios.get('/api/player/players');
-//         setPlayers(result.data);
-//     };
-//
-//     useEffect(() => {
-//         fetchPlayers();
-//     }, []);
-//
-//     const handleChange = (value, fieldName) => {
-//         form.setFieldsValue({
-//             [fieldName]: value,
-//         });
-//     };
-//
-//     const filterOptions = (input, option) =>
-//         option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0;
-//
-//     const handleSubmit = async (values) => {
-//         // Create bracket first
-//         const bracketData = {
-//             tournament_name: values.tournamentName,
-//             tournament_location: values.tournamentLocation,
-//             start_date: values.startDate,
-//         };
-//         const bracketRes = await axios.post('/api/bracket/add', bracketData);
-//         const bracketId = bracketRes.data.bracket_id;
-//
-//         // Create matches for the bracket
-//         const matchData = [
-//             {
-//                 title: 'Semi Final 1',
-//                 player1_id: values.semiFinal1Player1,
-//                 player2_id: values.semiFinal1Player2,
-//                 bracket_id: bracketId,
-//             },
-//             {
-//                 title: 'Semi Final 2',
-//                 player1_id: values.semiFinal2Player1,
-//                 player2_id: values.semiFinal2Player2,
-//                 bracket_id: bracketId,
-//             },
-//         ];
-//         for (let match of matchData) {
-//             await axios.post('/api/match/add', match);
-//         }
-//     };
-//
-//     return (
-//         <Form form={form} onFinish={handleSubmit} layout="vertical">
-//             <Form.Item
-//                 name="tournamentName"
-//                 rules={[
-//                     {
-//                         required: true,
-//                         message: 'Please input the tournament name!',
-//                     },
-//                 ]}
-//             >
-//                 <Input placeholder="Tournament Name" />
-//             </Form.Item>
-//             <Form.Item
-//                 name="tournamentLocation"
-//                 rules={[
-//                     {
-//                         required: true,
-//                         message: 'Please input the tournament location!',
-//                     },
-//                 ]}
-//             >
-//                 <Input placeholder="Tournament Location" />
-//             </Form.Item>
-//             <Form.Item
-//                 name="startDate"
-//                 rules={[
-//                     {
-//                         required: true,
-//                         message: 'Please select the start date!',
-//                     },
-//                 ]}
-//             >
-//                 <DatePicker format="YYYY-MM-DD" />
-//             </Form.Item>
-//             <Form.Item
-//                 name="semiFinal1Player1"
-//                 rules={[
-//                     {
-//                         required: true,
-//                         message: 'Please select the first player for the first semi final!',
-//                     },
-//                 ]}
-//             >
-//                 <Select
-//                     showSearch
-//                     placeholder="Select a player for the first semi final"
-//                     optionFilterProp="children"
-//                     filterOption={filterOptions}
-//                     onChange={(value) => handleChange(value, 'semiFinal1Player1')}
-//                 >
-//                     {players.map((player) => (
-//                         <Option key={player.id} value={player.id}>
-//                             {player.name}
-//                         </Option>
-//                     ))}
-//                 </Select>
-//             </Form.Item>
-//             {/* Add more Form.Item for other matches and fields as necessary */}
-//             <Form.Item>
-//                 <Button type="primary" htmlType="submit">
-//                     Create Tournament
-//                 </Button>
-//             </Form.Item>
-//         </Form>
-//     );
-// };
-//
-// export default TournamentForm;
