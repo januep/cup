@@ -9,8 +9,19 @@ const MatchCard = ({ match, loading, tournamentName }) => {
     const homePlayerName = `${match.player1.last_name}`;
     const awayPlayerName = `${match.player2.last_name}`;
 
+    // Wartość początkowa źródła obrazka
+    const initialImageSrc = `https://source.unsplash.com/200x100/?tennis,match${match.match_id}`;
+
+    // Utworzenie stanu dla źródła obrazka
+    const [imageSrc, setImageSrc] = React.useState(initialImageSrc);
+
+    // Funkcja do obsługi błędów ładowania obrazka
+    const handleImageError = () => {
+        setImageSrc(null);
+    };
+
     return (
-        <Col key={match.match_id} xs={24} sm={12} md={8} lg={6} xl={4.5}>
+        <Col key={match.match_id} xs={24} sm={12} md={8} lg={6} xl={4.5} data-aos="zoom">
             <Spin spinning={loading} size="large">
                 <Card
                     title={`${match.title} - ${tournamentName}`}
@@ -18,11 +29,14 @@ const MatchCard = ({ match, loading, tournamentName }) => {
                     hoverable
                     style={{ margin: "16px 0", minHeight: '200px' }}
                 >
-                    <img
-                        alt="match"
-                        src={`https://source.unsplash.com/200x100/?tennis,match${match.match_id}`}
-                        style={{ width: '100%', borderRadius: '2px' }}
-                    />
+                    {imageSrc && (
+                        <img
+                            onError={handleImageError}
+                            alt=""
+                            src={imageSrc}
+                            style={{ width: '100%', borderRadius: '2px' }}
+                        />
+                    )}
                     <Row justify="center" style={{ marginTop: 16 }}>
                         <Col span={8} style={{ textAlign: "center" }}>
                             <Link style={{ color: 'inherit', textDecoration: 'none' }} to={`/player/${match.player1.player_id}`}>
