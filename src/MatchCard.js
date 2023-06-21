@@ -21,7 +21,7 @@ const MatchCard = ({ match, loading, tournamentName }) => {
     };
 
     return (
-        <Col key={match.match_id} xs={24} sm={12} md={8} lg={6} xl={4.5} data-aos="zoom">
+        <Col key={match.match_id} xs={24} sm={12} md={8} lg={6} xl={4.5} data-aos="flip-down">
             <Spin spinning={loading} size="large">
                 <Card
                     title={`${match.title} - ${tournamentName}`}
